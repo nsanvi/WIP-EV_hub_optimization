@@ -1,0 +1,47 @@
+1. El Escenario de Negocio (El "Brief")
+Viene un cliente (por ejemplo, Endesa X o el Ayuntamiento de Barcelona) y te dice:
+"Tenemos presupuesto aprobado para instalar 50 nuevos cargadores rápidos en 2026. Sabemos que ponerlos cuesta 
+dinero y queremos asegurarnos de que se usen. Dinos exactamente en qué esquinas o coordenadas ponerlos para 
+maximizar el retorno de inversión."
+2. Tu Producto (La Solución)
+Tú no les das una opinión. Les entregas un Modelo de Optimización de Localización.
+¿Qué hace tu código?
+Entrada (Input): Recibe un número 
+ (ej: 50 cargadores).
+Proceso (The "Black Box"):
+Calcula dónde está la demanda "latente" (gente rica + muchos coches).
+Resta la oferta actual (cargadores que ya existen y funcionan).
+Encuentra los huecos (gaps) donde la "presión" de demanda es máxima.
+Salida (Output): Una lista de 50 coordenadas (Latitud, Longitud) y un mapa interactivo.
+3. La "Física" detrás del problema (Para tu mente)
+Como físico, visualízalo así:
+La ciudad es un plano 2D.
+La Demanda (coches eléctricos potenciales) es una distribución de densidad de carga 
+.
+Los Cargadores son sumideros (sinks) que atraen esa carga.
+Tu objetivo es colocar 
+ sumideros nuevos en el campo tal que minimices la distancia media que una partícula (coche) 
+ tiene que recorrer para encontrar un sumidero, o maximices la carga total capturada.
+Esto es, literalmente, un problema de minimización de energía potencial en un sistema discreto.
+4. ¿Cómo encajan las piezas del PDF de EADA?
+Aquí es donde transformas un ejercicio matemático en un TFM (Trabajo Final de Máster) de negocio:
+Data Analysis: Limpias los datos de Open Data BCN (barrios, censos de vehículos, parkings).
+Machine Learning (Clustering): Usas algoritmos (K-Means o DBSCAN ponderado) para encontrar esos "centros de gravedad"
+ óptimos donde agrupar los cargadores.
+Estrategia (A/B Testing Simulado): Aquí está la clave para tu nota.
+Escenario A (Naive/Control): Simulas qué pasaría si ponemos los 50 cargadores aleatoriamente o simplemente
+ "donde hay parkings públicos ahora mismo". Mides cuánta gente queda cubierta.
+Escenario B (Tu Algoritmo): Simulas tu distribución óptima.
+El Resultado: "Mi algoritmo cubre a un 30% más de usuarios potenciales con el mismo presupuesto de
+ inversión (CAPEX) que la estrategia actual."
+5. El Entregable Final Visual (Dashboard Tableau)
+El jurado no verá código, verá un Dashboard con:
+Un mapa de Barcelona.
+Un selector: "¿Cuántos cargadores quieres instalar? [10] [50] [100]".
+El mapa se actualiza mostrando las ubicaciones recomendadas.
+Unos KPIs gigantes arriba:
+Población servida estimada: 150.000 personas.
+Ahorro de CO2 potencial: X toneladas.
+Eficiencia vs. Distribución Aleatoria: +25%.
+¿Lo ves ahora más claro? Es una herramienta para que un directivo decida dónde gastar millones de euros 
+basándose en datos, no en intuición.

@@ -1,0 +1,43 @@
+📅 Planning: Días 1-7
+Día 1: Configuración del Entorno y "Hello World" Geográfico
+El análisis geoespacial en Python requiere librerías específicas. Si usas Anaconda o pip, instala esto hoy.
+Objetivo: Tener un entorno que no falle al leer mapas.
+Librerías Clave:
+pandas, numpy (Básicos)
+geopandas (El pandas de los mapas, vital)
+shapely (Para geometría: puntos, polígonos)
+folium (Para mapas interactivos html tipo Google Maps)
+scikit-learn (Para el algoritmo K-Means)
+Tarea: Crea un cuaderno 01_Setup_and_Map.ipynb que cargue el mapa de los distritos de Barcelona y lo muestre en pantalla.
+Día 2: Caza y Recolección de Datos (Open Data BCN)
+Necesitas tres capas de información. Ve al portal Open Data BCN y busca:
+Geometría: "Unidades administrativas" o "Barrios" (Formato .geojson o .shp).
+Infraestructura Actual: "Puntos de recarga vehículo eléctrico" (CSV). Esto será tu Baseline.
+Demanda (Proxies):
+"Parque de vehículos" (por barrio).
+"Renta familiar disponible" (por barrio) -> Hipótesis de negocio: Quien tiene más renta, es más probable que compre un Tesla hoy.
+Día 3: Limpieza y "Spatial Join" (El paso crucial)
+Aquí cruzas los datos. Los CSVs no saben de mapas, tienes que enseñarles.
+El Reto: Tienes datos por Barrio (Polígono) y Cargadores por Coordenada (Puntos).
+La Tarea de Físico: Realizar un Spatial Join. Asignar cada cargador a su barrio correspondiente para ver qué barrios están infraservidos (ratio cargadores/coches).
+Entregable: Un DataFrame limpio con columnas: [Barrio, Geometria, Renta, Num_Coches, Num_Cargadores_Actuales].
+Día 4: Creación del "Campo Escalar de Demanda" (Feature Engineering)
+Vamos a crear una métrica sintética. No puedes optimizar sobre 5 variables a la vez, mejor crea un índice.
+Fórmula propuesta (Simplificada):
+Tarea: Calcular este Score para cada barrio y visualizarlo en un Mapa de Coropletas (Heatmap por zonas) en Python. Donde el mapa esté "rojo", ahí faltan cargadores.
+Día 5: Primer Modelo de Optimización (K-Means)
+Vamos a usar ML no supervisado para localizar los puntos.
+Lógica: Imagina que generamos 10,000 puntos aleatorios en el mapa, pero la probabilidad de que aparezca un punto depende del 
+ del Día 4.
+Algoritmo: Ejecuta un K-Means con 
+ (o el número de cargadores que quieras instalar) sobre esos puntos ponderados.
+Resultado: Los Centroides de los clústeres te darán las coordenadas óptimas lat/lon propuestas.
+Días 6-7: Visualización y Primeros Insights
+Pasa los resultados a un mapa interactivo con folium.
+Visual: Mapa con puntos azules (cargadores viejos) y puntos rojos (tus propuestas).
+Business Check: ¿Tienen sentido? Si te sale un cargador en medio de Collserola (montaña), algo falla en los pesos. Si salen en el Eixample o Sarrià, vas bien.
+⚠️ Aviso Técnico para el Físico (Sistemas de Coordenadas)
+Este es el error nº1 que te va a frustrar: Las proyecciones.
+Los GPS usan Latitud/Longitud (EPSG:4326). Es una esfera. No puedes calcular distancias en metros (Euclídeas) fácilmente.
+Para medir distancias y optimizar, tendrás que proyectar los datos a un sistema plano métrico (UTM zona 31N, código EPSG:25831 para BCN).
+Regla de oro: Mantén tus datos en EPSG:4326 para pintar mapas, conviértelos a EPSG:25831 para calcular matemáticas.
