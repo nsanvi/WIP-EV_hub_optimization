@@ -1,0 +1,7 @@
+N_Chargers,Strategy,served_barrios_count,population_served,unmet_demand_captured,Scenario_ID
+10,Baseline,9,117510,205.94259824001543,Baseline_10
+10,Smart,10,150517,377.49880285543975,Smart_10
+25,Baseline,19,295684,551.6357903143698,Baseline_25
+25,Smart,25,372195,886.5877079102673,Smart_25
+50,Baseline,33,485927,943.2788402511553,Baseline_50
+50,Smart,50,655681,1382.6465390695412,Smart_50

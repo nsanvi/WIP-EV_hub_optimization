@@ -41,9 +41,10 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# Data files (you may want to keep some, adjust as needed)
-*.csv
-*.xlsx
-*.xls
-# If you want to keep specific data files, you can add exceptions like:
-# !data/raw/important_file.csv
+# Planning files (local only)
+planning1.txt
+premisadistribucioncarga.txt
+
+# Utility scripts
+clear_notebook_outputs.py
+debug_chargers.py
