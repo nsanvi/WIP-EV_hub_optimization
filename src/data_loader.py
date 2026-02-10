@@ -190,8 +190,15 @@ def load_vehicles(
     
     df = pd.read_csv(file_path)
     
-    if filter_ev_types and 'Propulsio' in df.columns:
-        df = df[df['Propulsio'].isin(config.EV_PROPULSION_TYPES)]
+    # Check for propulsion column (either Propulsio or Tipus_Propulsio)
+    propulsion_col = None
+    if 'Propulsio' in df.columns:
+        propulsion_col = 'Propulsio'
+    elif 'Tipus_Propulsio' in df.columns:
+        propulsion_col = 'Tipus_Propulsio'
+    
+    if filter_ev_types and propulsion_col:
+        df = df[df[propulsion_col].isin(config.EV_PROPULSION_TYPES)]
     
     return df
 
