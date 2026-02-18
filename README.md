@@ -1,6 +1,6 @@
 #  EV Hub Optimization for Barcelona
 
-> ** Work in Progress**: This project is currently under active development. The final KPI dashboards and visualization layer are in progress and will be the key deliverables for stakeholder presentation.
+> ** Work in Progress**: This project is currently under active development. The final KPI dashboards and visualization layer are in progress and will be the key deliverables.
 
 A data-driven optimization system that identifies optimal locations for Electric Vehicle charging hubs in Barcelona using machine learning, geospatial analysis, and demand modeling.
 
