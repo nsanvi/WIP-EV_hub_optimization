@@ -129,7 +129,7 @@ All data sourced from [Barcelona Open Data Service](https://opendata-ajuntament.
 
 ---
 
-## 🔬 Methodology Highlights
+## Methodology Highlights
 
 ### Demand Score Formula
 Weighted composite metric:
@@ -193,11 +193,11 @@ This project uses open data from Barcelona's Open Data Service. Refer to their l
 
 ---
 
-## 👤 Author
+## Author
 
 **Nicolas San Vicente**  
-📧 Contact: [Open an issue on GitHub](https://github.com/nsanvi/WIP-EV_hub_optimization/issues)  
-🔗 Repository: [github.com/nsanvi/WIP-EV_hub_optimization](https://github.com/nsanvi/WIP-EV_hub_optimization)
+ Contact: [Open an issue on GitHub](https://github.com/nsanvi/WIP-EV_hub_optimization/issues)  
+ Repository: [github.com/nsanvi/WIP-EV_hub_optimization](https://github.com/nsanvi/WIP-EV_hub_optimization)
 
 ---
 
