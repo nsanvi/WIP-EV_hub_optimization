@@ -200,11 +200,12 @@ def visualize_hub_locations(
     m = create_folium_map()
     
     # Add demand choropleth
+    legend_name = demand_column.replace('_', ' ').title()
     m = add_choropleth_layer(
         m,
         gdf_barrios,
         column=demand_column,
-        legend_name='Unmet Demand Score',
+        legend_name=legend_name,
         colormap=config.COLOR_UNMET
     )
     

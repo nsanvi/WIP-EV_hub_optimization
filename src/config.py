@@ -91,6 +91,7 @@ BARRI_TYPE = 'BARRI'  # Neighborhood type identifier
 
 # Vehicle type classification
 EV_PROPULSION_TYPES = ['Elèctrica', 'Híbrid']  # Electric vehicle types
+PROPULSION_COLUMN = 'Tipus_Propulsio'  # Column name for propulsion type in vehicle data
 
 # Missing data handling
 FILL_STRATEGY = 'median'  # Strategy for filling missing values

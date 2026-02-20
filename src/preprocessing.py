@@ -78,9 +78,16 @@ def aggregate_vehicles_by_barrio(
     """
     df = standardize_barri_id(df_vehicles, 'Codi_Barri')
     
-    # Filter by propulsion type if specified
-    if propulsion_types and 'Propulsio' in df.columns:
-        df = df[df['Propulsio'].isin(propulsion_types)]
+    # Check for propulsion column (either Propulsio or Tipus_Propulsio)
+    propulsion_col = None
+    if 'Propulsio' in df.columns:
+        propulsion_col = 'Propulsio'
+    elif 'Tipus_Propulsio' in df.columns:
+        propulsion_col = 'Tipus_Propulsio'
+    
+    # Filter by propulsion type if specified and column exists
+    if propulsion_types and propulsion_col:
+        df = df[df[propulsion_col].isin(propulsion_types)]
     
     # Group by Barri_ID and sum vehicle counts
     df_agg = df.groupby(config.COL_BARRI_ID)['Nombre'].sum().reset_index()
@@ -101,9 +108,16 @@ def calculate_ev_counts(df_vehicles: pd.DataFrame) -> pd.DataFrame:
     """
     df = standardize_barri_id(df_vehicles, 'Codi_Barri')
     
-    # Filter to EV propulsion types
+    # Check for propulsion column (either Propulsio or Tipus_Propulsio)
+    propulsion_col = None
     if 'Propulsio' in df.columns:
-        df_ev = df[df['Propulsio'].isin(config.EV_PROPULSION_TYPES)]
+        propulsion_col = 'Propulsio'
+    elif 'Tipus_Propulsio' in df.columns:
+        propulsion_col = 'Tipus_Propulsio'
+    
+    # Filter to EV propulsion types if column exists
+    if propulsion_col:
+        df_ev = df[df[propulsion_col].isin(config.EV_PROPULSION_TYPES)]
         
         # Group and sum
         df_agg = df_ev.groupby(config.COL_BARRI_ID)['Nombre'].sum().reset_index()
